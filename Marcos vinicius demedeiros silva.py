@@ -387,6 +387,6 @@ while seletor!=0:
 print('fim do programa')
 print(clientes)
 arq_clientes= open("clientes.py", "wt", encoding="utf-8")
-for matr, dados in clientes.items():
+for posc, dados in clientes.items():
     arq_clientes.write(f"{posc},{dados[0]},{dados[1]},{dados[2]},{dados[3]},{dados[4]},{dados[5]}\n")
 arq_clientes.close()
