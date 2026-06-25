@@ -1,5 +1,4 @@
 # @title
-#re fazer os arquivos usando .txt
 import pickle
 
 seletor=1
@@ -185,7 +184,7 @@ while seletor!=0:
             produtos[posp]=[marca,nomep,preco,valor,estoque,'True']
 
         elif seletorp==2:
-            posp=int(input('digite a numeração do produto cadastado: '))
+            posp=input('digite a numeração do produto cadastado: ')
             if posp in produtos and produtos[posp][5]=='True':
                 print(' Dados atuais do produto:')
                 print(' Marca     :', produtos[posp][0])
@@ -241,10 +240,10 @@ while seletor!=0:
         if seletorv==1:
             posv=input('digite a numerção da venda')
             for posp in produtos:
-                print(f'Nome do produto: {produtos[posp][1]}')
+                print(f'Nome do produto: {produtos[posp][1]} | Posição: {posp}')
             posp=input('digite a numerção do produto')
             for posc in clientes:
-                print(f'Nome do cliente: {clientes[posc][0]}')
+                print(f'Nome do cliente: {clientes[posc][0]} | Posição: {posc}')
             posc=input('digite a numerção do cliente que comprou')
             if posp in produtos and posc in clientes:
                 valorv=input('digite o valor da venda')
@@ -259,16 +258,20 @@ while seletor!=0:
                     print('Produto  :', vendas[posv][2])
                     print('Valor da venda : ',vendas[posv][3])
                     print()
-                    for posp in produtos and produtos[posp][5]=='True':
-                        print(f'Nome do produto: {produtos[posp][1]}')
+                    for posp in produtos:
+                        if produtos[posp][5]=='True':
+                            print(f'Nome do produto: {produtos[posp][1]} | Posição: {posp}')
                     posp=input('digite a numerção do produto')
                     for posc in clientes and clientes[posc][5]=='True':
-                        print(f'Nome do cliente: {clientes[posc][0]}')
+                        if clientes[posc][5]=='True':
+                            print(f'Nome do cliente: {clientes[posc][0]} | Posição: {posc}')
                     posc=input('digite a numerção do cliente que comprou')
                     if posp in produtos and posc in clientes and produtos[posp][5]=='True' and clientes[posc][5]=='True':
                         valorv=input('digite o valor da venda')
                         vendas[posv]=[clientes[posc][0],produtos[posp][0],produtos[posp][1],valorv,'True']
                         print('venda alterada com sucesso')
+                    else:
+                        print('houve algum erro, digite a posição corretamente e de clientes/produtos cadastrados')
 
         elif seletorv==3:
                 posv=(input('digite a numeração da venda que você quer deletar: '))
@@ -380,11 +383,11 @@ while seletor!=0:
                 while decision !='n' and decision!='N':
                     posp=input('digite a posição do produto')
                     if posp in produtos:
-                        print('Marca: ',clientes[posc][0])
-                        print('Nome: ', clientes[posc][1])
-                        print('Preço de mercado: ',clientes[posc][2])
-                        print('Valor de venda: ',clientes[posc][3])
-                        print('Estoque: ',clientes[posc][4])
+                        print('Marca: ',produtos[posp][0])
+                        print('Nome: ', produtos[posp][1])
+                        print('Preço de mercado: ',produtos[posp][2])
+                        print('Valor de venda: ',produtos[posp][3])
+                        print('Estoque: ',produtos[posp][4])
                         decision=input('gostaria de continuar selecionando produtos?')
                     else:
                         print('produto não encontrado')
