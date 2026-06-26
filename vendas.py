@@ -1,4 +1,4 @@
-001,clientes['123'][0],produtos['001'][0],produtos['001'][1],10.00,True,
-002,clientes['345'][0],produtos['002'][0],produtos['002'][1],10.00,True,
-003,clientes['456'][0],produtos['003'][0],produtos['003'][1],10.00,True,
-004,clientes['678'][0],produtos['004'][0],produtos['004'][1],10.00,True,
+001,Homer Simpson,Ivone,perfume a,10.0,True
+002,Marge Simpson,Ivone,perfume b,10.0,True
+003,Bart Simpson,Ivone,perfume c,10.0,True
+004,Maggie Simpson,Ivone,perfume d,10.0,True
