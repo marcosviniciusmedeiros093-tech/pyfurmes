@@ -1,9 +1,9 @@
 # @title
 import pickle
-
-seletor=1
+import validações
+vcpfetor=1
 escolha='s'
-
+seletor=''
 clientes={}
 try:
     arq_clientes = open("clientes.py", "rt", encoding="utf-8")
@@ -75,10 +75,7 @@ try:
             nomepv= campos[3]
             valorv= campos[4]
             cad= campos[5]
-            lnomev=nomev.strip('',"")
-            lmarcav=marcav.strip('',"")
-            lnomepv=nomepv.strip('',"")
-            vendas[posv]=[lnomev,lmarcav,lnomepv,valorv,cad,]
+            vendas[posv]=[nomev,marcav,nomepv,valorv,cad,]
     arq_vendas.close()
 except:
     vendas={
@@ -95,33 +92,41 @@ except:
 while seletor!=0:
     seletor=int(input('''
     para sair digite 0
-    digite 1 para cadastra clientes
-    digite 2 para cadastrar produtos
-    digite 3 para cadastrar vendas
+    digite 1 para ir para o modulo clientes
+    digite 2 para ir para o modulo produtos
+    digite 3 para ir para o modulo vendas
     digite 4 para relatorios
     digite 5 para informações
     '''))
 
     if seletor==1:
         seletorc=int(input('''
-        digite 0 para voltar ao menu principal
-        digite 1 para cadastra clientes
-        digite 2 para alterar clientes cadastros
-        digite 3 para remover clientes cadastrados
-        digite 4 para pesquisar clientes cadastrados
-        '''))
-
+          digite 0 para voltar ao menu principal
+          digite 1 para cadastra clientes
+          digite 2 para alterar clientes cadastros
+          digite 3 para remover clientes cadastrados
+          digite 4 para pesquisar clientes cadastrados
+          '''))         
         if seletorc==1:
-            posc=input('digite a posição que esse cliente ocupará')
+            posc=input('digite a posição que esse cliente ocupará: ')
             nome=input('digite o nome completo: ')
-            cpf=input('digite o CPF: ')
+            while validações.vcpf(cpf)!=True:
+                cpf=input('digite o CPF: ')
+                if validações.vcpf(cpf)!=True:
+                    print('CPF innvalido')
+            while validações.vtel(tel)!=True:
+                tel=input('digite o telefone para contato: ')
+                if validações.vtel(tel)!=True:
+                    print('Telefone innvalido')
             tel=input('digite o telefone para contato: ')
-            mail=input('digite o E-mail')
-            endereco=input('digite o endereço')
+            while validações.vmail(mail)!=True:
+                mail=input('digite o email: ')
+                if validações.vmail(mail)!=True:
+                    print('E-mail innvalido')
+            endereco=input('digite o endereço: ')
             clientes[posc]=[nome,cpf,mail,endereco,tel,'True']
-            print('clientes: ',clientes)
-            print('cadastro concluido')
-
+            print('cadastro de cliente concluido')
+            print('cadastro concluido')         
         elif seletorc==2:
             posc=input('digite a numeração do cliente cadastado: ')
             if posc in clientes and clientes[posc][5]=='True':
@@ -133,15 +138,24 @@ while seletor!=0:
                 print('Telefone : ',clientes[posc][4])
                 print()
                 nome=input('digite o nome completo: ')
-                cpf=input('digite o CPF: ')
+                while validações.vcpf(cpf)!=True:
+                    cpf=input('digite o CPF: ')
+                    if validações.vcpf(cpf)!=True:
+                        print('CPF innvalido')
+                while validações.vtel(tel)!=True:
+                    tel=input('digite o telefone para contato: ')
+                    if validações.vtel(tel)!=True:
+                        print('Telefone innvalido')
                 tel=input('digite o telefone para contato: ')
-                mail=input('digite o E-mail')
+                while validações.vmail(mail)!=True:
+                    mail=input('digite o email: ')
+                    if validações.vmail(mail)!=True:
+                        print('E-mail innvalido')
                 endereco=input('digite o endereço')
                 clientes[posc]=[nome,cpf,mail,endereco,tel,'True']
                 print('alteração concluida')
             else:
-                print('cliente não encontrado')
-
+                print('cliente não encontrado')         
         elif seletorc==3:
             posc=input('digite a numeração do cliente que você quer deletar: ')
             if posc in clientes and clientes[posc][5]=='True':
@@ -150,8 +164,7 @@ while seletor!=0:
                     clientes[posc][5]='False'
                     print('cliente removido com sucesso')
                 else:
-                    print('exclusão cancelada')
-
+                    print('exclusão cancelada')         
         elif seletorc==4:
             posc=input('digite a numeração do cliente que você quer visualizar: ')
             if posc in clientes and clientes[posc][5]=='True':
@@ -164,7 +177,7 @@ while seletor!=0:
                 print()
             else:
                 print('cliente não encontrado')
-
+            
     elif seletor==2:
         seletorp=int(input('''
         digite 1 para cadastra produtos
@@ -174,13 +187,17 @@ while seletor!=0:
         '''))
 
         if seletorp==1:
+            estoque=''
             print('cadastro de produtos')
             posp=input('digite a posição deste produto: ')
             marca=input('escreva o nome da marca: ')
             nomep=input('escreva o nome do produto: ')
             preco=float(input('escreva o preço de mercado do produto: '))
             valor=float(input('escreva o valor do produto para seus clientes: '))
-            estoque=int(input('digite o quantidade desse produto no o estoque: '))
+            while estoque<=0:
+                estoque=int(input('digite o quantidade desse produto no o estoque: '))
+                if estoque<=0:
+                    print('este valor não é permitido')
             produtos[posp]=[marca,nomep,preco,valor,estoque,'True']
 
         elif seletorp==2:
@@ -231,9 +248,9 @@ while seletor!=0:
     elif seletor==3:
         seletorv=int(input('''
         digite 0 para sair
-        digite 1 para declarar as vendas
-        digite 2 para alterar venda declarada
-        digite 3 para deletar venda declarada
+        digite 1 para cadastrar vendas
+        digite 2 para alterar venda cadastrada
+        digite 3 para deletar venda cadastrada
         digite 4 para pesquisar vendas
         '''))
 
@@ -312,17 +329,16 @@ while seletor!=0:
         digite 3 para lista de vendas
         '''))
         if seletorl==1:
-            opcoes=int(input('''
-        digite 0 para sair
-        digite 1 para recadastrar cliente excluidos
-        digite 2 para mais informações dos clientes
-        '''))
             for posc in clientes:
                 if clientes[posc][5]=='True':
                     print(f'''nome:{clientes[posc][0]} | Posição: {posc} | Status: cadastrado''')
                 elif clientes[posc][5]=='False':
                     print(f'''nome:{clientes[posc][0]} | Posição: {posc} | Status: excluido''')
-
+            opcoes=int(input('''
+        digite 0 para sair
+        digite 1 para recadastrar cliente excluidos
+        digite 2 para mais informações dos clientes
+        '''))
             if opcoes==1:
                 recad=''
                 while recad != 'n' and recad != 'N':
@@ -354,17 +370,16 @@ while seletor!=0:
 
 
         if seletorl==2:
-            opcoes=int(input('''
-        digite 0 para sair
-        digite 1 para recadastrar produtos excluidos
-        digite 2 para mais informações de produtos
-        '''))
             for posp in produtos:
                 if produtos[posp][5]=='True':
                     print(f'''Nome:{produtos[posp][1]} | Posição: {posp} | Status: cadastrado''')
                 elif produtos[posp][5]=='False':
                     print(f'''Nome:{produtos[posp][1]} | Posição: {posp} | Status: excluido''')
-
+            opcoes=int(input('''
+        digite 0 para sair
+        digite 1 para recadastrar produtos excluidos
+        digite 2 para mais informações de produtos
+        '''))
             if opcoes==1:
                 recad=''
                 while recad != 'n' and recad != 'N':
@@ -394,16 +409,17 @@ while seletor!=0:
                         decision=input('gostaria de continuar selecionando produtos?')
 
         if seletorl==3:
+            for posv in vendas:
+                if vendas[posv][4]=='True':
+                  print(f'''Nome do cliente: {vendas[posv][0]} | Nome do produto: {vendas[posv][2]} | Posição: {posv} | Valor da venda: {vendas[posv][3]} | posição da venda {posv} | Status: cadastrada''')
+                elif vendas[posv][4]=='False':
+                  print(f'''Nome do cliente: {vendas[posv][0]} | Nome do produto: {vendas[posv][2]} | Posição: {posv} | Valor da venda: {vendas[posv][3]} | posição da venda {posv} | Status: excluida''')
             opcoes=int(input('''
         digite 0 para sair
         digite 1 para recadastrar vendas excluidas
         digite 2 para mais informações de vendas
         '''))
-            for posv in vendas:
-                if vendas[posv][4]=='True':
-                    print(f'''Nome do cliente: {vendas[posv][0]} | Nome do produto: {vendas[posv][2]} | Posição: {posv} | Valor da venda: {vendas[posv][3]} | Status: cadastrada''')
-                elif vendas[posv][4]=='False':
-                    print(f'''Nome do cliente: {vendas[posv][0]} | Nome do produto: {vendas[posv][2]} | Posição: {posv} | Valor da venda: {vendas[posv][3]} | Status: excluida''')
+        
             if opcoes==1:
                 recad=''
                 while recad != 'n' and recad != 'N':
