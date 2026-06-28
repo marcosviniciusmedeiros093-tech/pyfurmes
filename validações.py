@@ -18,3 +18,5 @@ def vtel(tel):
     digitos=tel.strip('',"")
     if len(digitos) < 10 or len(digitos) > 11 and not digitos.isdigit():
         return False
+    else:
+        return True
