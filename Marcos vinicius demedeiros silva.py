@@ -408,7 +408,7 @@ while seletor!=0:
                         print('produto não encontrado')
                         decision=input('gostaria de continuar selecionando produtos?')
 
-        if seletorl==3:
+        elif seletorl==3:
             for posv in vendas:
                 if vendas[posv][4]=='True':
                   print(f'''Nome do cliente: {vendas[posv][0]} | Nome do produto: {vendas[posv][2]} | Posição: {posv} | Valor da venda: {vendas[posv][3]} | posição da venda {posv} | Status: cadastrada''')
