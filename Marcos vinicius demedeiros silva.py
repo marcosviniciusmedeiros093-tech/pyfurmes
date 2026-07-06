@@ -1,5 +1,4 @@
 # @title
-#lembrar de fazer o resto dos relatorios
 import pickle
 import validações
 vcpfetor=1
@@ -184,6 +183,8 @@ while seletor!='0':
                 print()
             else:
                 print('cliente não encontrado')
+        else:
+            print('comando iválido')
             
     elif seletor=='2':
         seletorp=input('''
@@ -261,7 +262,9 @@ while seletor!='0':
                 print()
             else:
                 print('produto não encontrado')
-
+        else:
+            print('comando inválido')
+    
     elif seletor=='3':
         seletorv=input('''
         digite 0 para sair
@@ -318,7 +321,8 @@ while seletor!='0':
                         print('exclusão cancelada')
                 else:
                     print('venda não encontrada')
-
+        else:
+            print('comando inválido')
 
     elif seletor=='4':
         seletorl=input('''
@@ -333,12 +337,12 @@ while seletor!='0':
                     print(f'''nome:{clientes[posc][0]} | Posição: {posc} | Status: cadastrado''')
                 elif clientes[posc][5]=='False':
                     print(f'''nome:{clientes[posc][0]} | Posição: {posc} | Status: excluido''')
-            opcoes=int(input('''
+            opcoes=input('''
         digite 0 para sair
         digite 1 para recadastrar cliente excluidos
         digite 2 para mais informações dos clientes
         digite 3 para pesquisa com filtros
-        '''))
+        ''')
             if opcoes=='1':
                 recad=''
                 while recad != 'n' and recad != 'N':
@@ -437,8 +441,9 @@ while seletor!='0':
                                         print(f'''nome: {clientes[posc][0]} | Posição: {posc} | Status: excluido''')
                                 input('aperte ENTER para sair')
                             else:
-                                print('telefone inválido')
-                            
+                                print('telefone inválido')                            
+            else:
+                print('comando inválido')
         if seletorl=='2':
             for posp in produtos:
                 if produtos[posp][5]=='True':
@@ -480,15 +485,15 @@ while seletor!='0':
                         decision=input('gostaria de continuar selecionando produtos?')
             elif opcoes=='3':
                 filtrosp=''
-                while filtrosp!=0:
-                    filtrosp=int(input('''
+                while filtrosp!='0':
+                    filtrosp=input('''
                     digite 0 para sair
                     digite 1 para pesquisar por marca
                     digite 2 para pesquisar por nome do produto
                     digite 3 para pesquisar por preço de mercado
                     digite 4 para pesquisar por preço de venda
                     digite 5 para pesquisar por estoque
-'''))
+''')
                     if filtrosp=='1':
                         marcap=input('digite o marca do produto: ')
                         print('principais resultados')
@@ -597,6 +602,8 @@ while seletor!='0':
                                 print(f'''Nome: {produtos[posp][1]} | Posição: {posp} | Status: cadastrado''')
                             elif valorf==valorl and produtos[posp][5]=='False':
                                 print(f'''Nome: {produtos[posp][1]} | Posição: {posp} | Status: não cadastrado''')
+            else:
+                print('comando inválido')
 
         elif seletorl=='3':
             for posv in vendas:
@@ -639,7 +646,7 @@ while seletor!='0':
                         decision=input('gostaria de continuar selecionando vendas?')
             elif opcoes=='3':
                 filtrosv=''
-                while filtrosv!=0:
+                while filtrosv!='0':
                     filtrosv=input('''
                     digite 0 para sair
                     digite 1 para pesquisar por nome do cliente
@@ -705,7 +712,9 @@ while seletor!='0':
                                 print(f'''Nome do cliente: {vendas[posv][0]} | Posição: {posv} | Status: cadastrado''')
                             elif valorf==valorl and vendas[posv][4]=='False':
                                 print(f'''Nome do cliente: {vendas[posv][0]} | Posição: {posv} | Status: não cadastrado''')
-
+        else:
+            print('comando inválido')
+    
     elif seletor=='5':
         print()
         print("Projeto de Gestão de Perfumaria")
