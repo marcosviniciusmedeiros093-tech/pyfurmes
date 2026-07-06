@@ -188,6 +188,7 @@ while seletor!='0':
             
     elif seletor=='2':
         seletorp=input('''
+        digite 0 para sair
         digite 1 para cadastra produtos
         digite 2 para alterar produtos cadastros
         digite 3 para remover produtos cadastrados
@@ -326,7 +327,7 @@ while seletor!='0':
 
     elif seletor=='4':
         seletorl=input('''
-        difite 0 para sair
+        digite 0 para sair
         digite 1 para lista de clientes
         digite 2 para lista de produtos
         digite 3 para lista de vendas
