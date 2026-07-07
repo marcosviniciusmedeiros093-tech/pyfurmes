@@ -1,3 +1,4 @@
+
 import pickle
 import validações
 vcpfetor=1
@@ -99,45 +100,16 @@ while seletor!='0':
     ''')
 
     if seletor=='1':
-        seletorc=input('''
-          digite 0 para voltar ao menu principal
-          digite 1 para cadastra clientes
-          digite 2 para alterar clientes cadastros
-          digite 3 para remover clientes cadastrados
-          digite 4 para pesquisar clientes cadastrados
-          ''')       
-        if seletorc=='1':
-            posc=input('digite a posição que esse cliente ocupará: ')
-            nome=input('digite o nome completo: ')
-            cpf=''
-            while validações.vcpf(cpf)!=True:
-                cpf=input('digite o CPF: ')
-                if validações.vcpf(cpf)!=True:
-                    print('CPF innvalido')
-            tel='1'
-            while validações.vtel(tel)!=True:
-                tel=input('digite o telefone para contato: ')
-                if validações.vtel(tel)!=True:
-                    print('Telefone innvalido')
-            mail=''
-            while validações.vmail(mail)!=True:
-                mail=input('digite o email: ')
-                if validações.vmail(mail)!=True:
-                    print('E-mail innvalido')
-            endereco=input('digite o endereço: ')
-            clientes[posc]=[nome,cpf,mail,endereco,tel,'True']
-            print('cadastro de cliente concluido')
-            print('cadastro concluido')         
-        elif seletorc=='2':
-            posc=input('digite a numeração do cliente cadastado: ')
-            if posc in clientes and clientes[posc][5]=='True':
-                print(' Dados atuais do cliente:')
-                print(' Nome     :', clientes[posc][0])
-                print(' CPF    :', clientes[posc][1])
-                print('Email  :', clientes[posc][2])
-                print('Endereço : ',clientes[posc][3])
-                print('Telefone : ',clientes[posc][4])
-                print()
+        seletorc=''
+        while seletorc!='0':
+            seletorc=input('''
+              digite 0 para voltar ao menu principal
+              digite 1 para cadastra clientes
+              digite 2 para alterar clientes cadastros
+              digite 3 para remover clientes cadastrados
+              digite 4 para pesquisar clientes cadastrados
+              ''')       
+            if seletorc=='1':
                 posc=input('digite a posição que esse cliente ocupará: ')
                 nome=input('digite o nome completo: ')
                 cpf=''
@@ -158,72 +130,81 @@ while seletor!='0':
                 endereco=input('digite o endereço: ')
                 clientes[posc]=[nome,cpf,mail,endereco,tel,'True']
                 print('cadastro de cliente concluido')
-                print('cadastro concluido') 
-            else:
-                print('cliente não encontrado')         
-        elif seletorc=='3':
-            posc=input('digite a numeração do cliente que você quer deletar: ')
-            if posc in clientes and clientes[posc][5]=='True':
-                salvador=input(' você tem certeza? S/N ')
-                if salvador=='s' or salvador=='S':
-                    clientes[posc][5]='False'
-                    print('cliente removido com sucesso')
+                print('cadastro concluido')         
+            elif seletorc=='2':
+                posc=input('digite a numeração do cliente cadastado: ')
+                if posc in clientes and clientes[posc][5]=='True':
+                    print(' Dados atuais do cliente:')
+                    print(' Nome     :', clientes[posc][0])
+                    print(' CPF    :', clientes[posc][1])
+                    print('Email  :', clientes[posc][2])
+                    print('Endereço : ',clientes[posc][3])
+                    print('Telefone : ',clientes[posc][4])
+                    print()
+                    posc=input('digite a posição que esse cliente ocupará: ')
+                    nome=input('digite o nome completo: ')
+                    cpf=''
+                    while validações.vcpf(cpf)!=True:
+                        cpf=input('digite o CPF: ')
+                        if validações.vcpf(cpf)!=True:
+                            print('CPF innvalido')
+                    tel='1'
+                    while validações.vtel(tel)!=True:
+                        tel=input('digite o telefone para contato: ')
+                        if validações.vtel(tel)!=True:
+                            print('Telefone innvalido')
+                    mail=''
+                    while validações.vmail(mail)!=True:
+                        mail=input('digite o email: ')
+                        if validações.vmail(mail)!=True:
+                            print('E-mail innvalido')
+                    endereco=input('digite o endereço: ')
+                    clientes[posc]=[nome,cpf,mail,endereco,tel,'True']
+                    print('cadastro de cliente concluido')
+                    print('cadastro concluido') 
                 else:
-                    print('exclusão cancelada')         
-        elif seletorc=='4':
-            posc=input('digite a numeração do cliente que você quer visualizar: ')
-            if posc in clientes and clientes[posc][5]=='True':
-                print(' Dados atuais do cliente:')
-                print(' Nome     :', clientes[posc][0])
-                print(' CPF    :', clientes[posc][1])
-                print('Email  :', clientes[posc][2])
-                print('Endereço : ',clientes[posc][3])
-                print('Telefone : ',clientes[posc][4])
-                print()
-            else:
-                print('cliente não encontrado')
+                    print('cliente não encontrado')         
+            elif seletorc=='3':
+                posc=input('digite a numeração do cliente que você quer deletar: ')
+                if posc in clientes and clientes[posc][5]=='True':
+                    salvador=input(' você tem certeza? S/N ')
+                    if salvador=='s' or salvador=='S':
+                        clientes[posc][5]='False'
+                        print('cliente removido com sucesso')
+                    else:
+                        print('exclusão cancelada')         
+            elif seletorc=='4':
+                posc=input('digite a numeração do cliente que você quer visualizar: ')
+                if posc in clientes and clientes[posc][5]=='True':
+                    print(' Dados atuais do cliente:')
+                    print(' Nome     :', clientes[posc][0])
+                    print(' CPF    :', clientes[posc][1])
+                    print('Email  :', clientes[posc][2])
+                    print('Endereço : ',clientes[posc][3])
+                    print('Telefone : ',clientes[posc][4])
+                    print()
+                else:
+                    print('cliente não encontrado')
             
     elif seletor=='2':
-        seletorp=input('''
-        digite 1 para cadastra produtos
-        digite 2 para alterar produtos cadastros
-        digite 3 para remover produtos cadastrados
-        digite 4 para pesquisar produtos cadastrados
-        ''')
+        seletorp=''
+        while seletorp!='0':
+            seletorp=input('''
+            digite 0 para sair
+            digite 1 para cadastra produtos
+            digite 2 para alterar produtos cadastros
+            digite 3 para remover produtos cadastrados
+            digite 4 para pesquisar produtos cadastrados
+            ''')
 
-        if seletorp=='1':
-            estoque=''
-            print('cadastro de produtos')
-            posp=input('digite a posição deste produto: ')
-            marca=input('escreva o nome da marca: ')
-            nomep=input('escreva o nome do produto: ')
-            while not preco.isdigit():
-                preco=input('escreva o preço de mercado do produto: ')
-            valor=''
-            while not valor.isdigit():
-                valor=input('escreva o valor do produto para seus clientes :  ')
-            estoque=''
-            while not estoque.isdigit():
-                estoque=input('digite o quantidade desse produto no o estoque: ')
-            produtos[posp]=[marca,nomep,preco,valor,estoque,'True']
-            print('alteração concluida')
-            produtos[posp]=[marca,nomep,preco,valor,estoque,'True']
-
-        elif seletorp=='2':
-            posp=input('digite a numeração do produto cadastado: ')
-            if posp in produtos and produtos[posp][5]=='True':
-                print(' Dados atuais do produto:')
-                print(' Marca     :', produtos[posp][0])
-                print(' Nome    :', produtos[posp][1])
-                print('Valor de mercado  :', produtos[posp][2])
-                print('Valor de venda : ',produtos[posp][3])
-                print('Estoque : ',produtos[posp][4])
-                print()
+            if seletorp=='1':
+                estoque=''
+                print('cadastro de produtos')
+                posp=input('digite a posição deste produto: ')
                 marca=input('escreva o nome da marca: ')
                 nomep=input('escreva o nome do produto: ')
-                preco=''
                 while not preco.isdigit():
-                    preco=input('escreva o preço de mercado do produto:  ')
+                    preco=input('escreva o preço de mercado do produto: ')
                 valor=''
                 while not valor.isdigit():
                     valor=input('escreva o valor do produto para seus clientes :  ')
@@ -232,33 +213,58 @@ while seletor!='0':
                     estoque=input('digite o quantidade desse produto no o estoque: ')
                 produtos[posp]=[marca,nomep,preco,valor,estoque,'True']
                 print('alteração concluida')
-            else:
-                print('produto não encontrado')
+                produtos[posp]=[marca,nomep,preco,valor,estoque,'True']
 
-        elif seletorp=='3':
-            posp=(input('digite a numeração do produto que você quer deletar: '))
-            if posp in produtos and produtos[posp][5]=='True':
-                salvador=input(' você tem certeza? S/N ')
-                if salvador=='s' or salvador=='S':
-                    produtos[posp][5]='False'
-                    print('produto removido com sucesso')
+            elif seletorp=='2':
+                posp=input('digite a numeração do produto cadastado: ')
+                if posp in produtos and produtos[posp][5]=='True':
+                    print(' Dados atuais do produto:')
+                    print(' Marca     :', produtos[posp][0])
+                    print(' Nome    :', produtos[posp][1])
+                    print('Valor de mercado  :', produtos[posp][2])
+                    print('Valor de venda : ',produtos[posp][3])
+                    print('Estoque : ',produtos[posp][4])
+                    print()
+                    marca=input('escreva o nome da marca: ')
+                    nomep=input('escreva o nome do produto: ')
+                    preco=''
+                    while not preco.isdigit():
+                        preco=input('escreva o preço de mercado do produto:  ')
+                    valor=''
+                    while not valor.isdigit():
+                        valor=input('escreva o valor do produto para seus clientes :  ')
+                    estoque=''
+                    while not estoque.isdigit():
+                        estoque=input('digite o quantidade desse produto no o estoque: ')
+                    produtos[posp]=[marca,nomep,preco,valor,estoque,'True']
+                    print('alteração concluida')
                 else:
-                    print('exclusão cancelada')
-            else:
-                print('produto não encontrado')
+                    print('produto não encontrado')
 
-        elif seletorp=='4':
-            posp=input('digite a numeração do produto que você quer visualizar: ')
-            if posp in produtos and produtos[posp][5]=='True':
-                print(' Dados atuais do produto:')
-                print(' Marca     :', produtos[posp][0])
-                print(' Nome    :', produtos[posp][1])
-                print('Valor de mercado  :', produtos[posp][2])
-                print('Valor de venda : ',produtos[posp][3])
-                print('Estoque : ',produtos[posp][4])
-                print()
-            else:
-                print('produto não encontrado')
+            elif seletorp=='3':
+                posp=(input('digite a numeração do produto que você quer deletar: '))
+                if posp in produtos and produtos[posp][5]=='True':
+                    salvador=input(' você tem certeza? S/N ')
+                    if salvador=='s' or salvador=='S':
+                        produtos[posp][5]='False'
+                        print('produto removido com sucesso')
+                    else:
+                        print('exclusão cancelada')
+                else:
+                    print('produto não encontrado')
+
+            elif seletorp=='4':
+                posp=input('digite a numeração do produto que você quer visualizar: ')
+                if posp in produtos and produtos[posp][5]=='True':
+                    print(' Dados atuais do produto:')
+                    print(' Marca     :', produtos[posp][0])
+                    print(' Nome    :', produtos[posp][1])
+                    print('Valor de mercado  :', produtos[posp][2])
+                    print('Valor de venda : ',produtos[posp][3])
+                    print('Estoque : ',produtos[posp][4])
+                    print()
+                else:
+                    print('produto não encontrado')
 
     elif seletor=='3':
         seletorv=input('''
