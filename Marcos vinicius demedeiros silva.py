@@ -1,5 +1,3 @@
-# @title
-#lembrar de fazer o resto dos relatorios
 import pickle
 import validações
 vcpfetor=1
